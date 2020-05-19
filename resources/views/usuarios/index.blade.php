@@ -34,9 +34,8 @@
                             <th>Email</th>
                             <th>Tipo</th>
                             <th>Nombre</th>
-                            <th>Cuidad</th>
                             <th>Estatus</th>
-                            <th class="col-md-1">Imagen</th>
+                            <!-- <th class="col-md-1">Imagen</th> -->
                             <th>Operaciones</th>
                         </tr>
                         </thead>
@@ -46,11 +45,10 @@
                                 <td scope="row">{{ $item->id }}</td>
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->tipo_usuario }}</td>
-                                <td>{{ $item->nombre }}</td>
-                                <td>{{ $item->cuidad }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td>{{ $item->estatus }}</td>
                                 <td>
-                                    <img src="images/productos/{{ $item->img_perfil }}" width="40%">
+                                    
                                 </td>
                                 <td>
                                     <a href="{{URL::action('UsersController@show',$item->id)}}">

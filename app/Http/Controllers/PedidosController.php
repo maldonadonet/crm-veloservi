@@ -23,10 +23,11 @@ class PedidosController extends Controller
         
         if( $request ) {
             $query=trim($request->get('searchText'));
+
             $pedidos = DB::table('pedidos as p')
             ->join('users as u','p.usuario_id','=','u.id')
-            ->select('p.id','u.nombre as cliente','p.direccion_entrega as direccion','p.fecha_pedido as fecha','p.monto','p.estatus','p.lt','p.lng','p.created_at','p.updated_at')
-            ->where('u.nombre','LIKE','%'.$query.'%')
+            ->select('p.id','u.name as cliente','p.fecha_pedido as fecha','p.monto','p.estatus','p.lt','p.lng','p.created_at','p.updated_at')
+            ->where('u.name','LIKE','%'.$query.'%')
             ->Orwhere('p.fecha_pedido','LIKE','%'.$query.'%')
             ->orderBy('p.fecha_pedido','desc')
             ->paginate(10);
@@ -64,8 +65,8 @@ class PedidosController extends Controller
     public function edit($id)
     {
         $pedido = DB::table('pedidos as p')
-        ->join('users as u','p.usuario_id','=','u.id')
-        ->select('p.id','u.nombre as cliente','p.direccion_entrega as direccion','p.fecha_pedido as fecha','p.monto','p.estatus','p.lt','p.lng','p.id_repartidor as repartidor')
+        ->join('datos_cliente as u','p.usuario_id','=','u.cliente_id')
+        ->select('p.id','u.nombre as cliente','u.telefono','u.cuidad','u.colonia','u.calle','u.referencia','u.image','p.fecha_pedido as fecha','p.monto','p.estatus')
         ->where('p.id','=',$id)
         ->first();
 

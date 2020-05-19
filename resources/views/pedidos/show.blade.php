@@ -16,9 +16,18 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Datos del Cliente</div>
                     <div class="panel-body">
+                        <strong>Datos del cliente</strong>
                         <p><strong class="text-primary">Nombre: </strong>{{ $pedido->nombre }}</p>
-                        <p><strong class="text-primary">Dirección de entrega: </strong>{{ $pedido->direccion }}</p>
-                        <p><strong class="text-primary">Dirección alterna: </strong>{{ $pedido->dir_alterna }}</p>
+                        <p><strong class="text-primary">Teléfono de contacto: </strong>{{ $pedido->telefono }}</p>
+                        <p>
+                            <strong class="text-primary">Dirección de entrega: </strong>
+                            <ul class="list-group">
+                                <li class="list-group-item">Cuidad: {{ $pedido->cuidad }}</li>
+                                <li class="list-group-item">Colonia: {{ $pedido->colonia }}</li>
+                                <li class="list-group-item">Calle: {{ $pedido->calle }}</li>
+                                <li class="list-group-item">Referencia al domicilio: {{ $pedido->referencia }}</li>
+                            </ul>
+                        </p>
                         <p><strong class="text-primary">Monto del pedido: </strong>{{ $pedido->monto }}</p>
                         <p><strong class="text-primary">Estatus del pedido: </strong><span class="badge badge-primary" style="background-color:#c70039; padding:5px">{{ $pedido->estatus }}</span></p>
                         <p><strong class="text-primary">Repartidor asignado:</strong> {{ $pedido->repartidor_id }}</p>
@@ -32,7 +41,7 @@
                     <div class="panel-body">
                         <p><strong class="text-primary">Id del pedido:</strong><span style="color:#c70039">{{ $pedido->id }}</span></p>           
                         <P><strong class="text-primary">Comercio: </strong><span style="color:#c70039">{{ $pedido->sucursal }}</span></P>
-                        <p><strong class="text-primary">Ubicación del comercio: </strong><span style="color:#c70039">{{ $pedido->dir_suc }}</span></p>
+                        <p><strong class="text-primary">Ubicación del comercio: </strong><span style="color:#c70039">{{ $pedido->direccion }}</span></p>
                         <p><strong class="text-primary">Productos solicitados </strong><span style="color:#c70039">{{ $pedido->productos }}</span></p>
                     </div>
                 </div>

@@ -23,9 +23,10 @@ class PedidosEspController extends Controller
     {
         if( $request ) {
             $query=trim($request->get('searchText'));
+
             $pedidos = DB::table('pedido_especial as p')
-            ->join('users as u','p.usuario_id','=','u.id')
-            ->select('p.id','p.nombre_sucursal as sucursal','p.direccion_sucursal as direccion','p.productos','p.total as monto','p.estatus','p.dir_entrega','p.dir_alterna','u.nombre','p.repartidor_id','p.created_at as fecha')
+            ->join('datos_cliente as u','p.usuario_id','=','u.cliente_id')
+            ->select('p.id','p.nombre_sucursal as sucursal','p.direccion_sucursal as direccion','p.productos','p.total as monto','p.estatus','p.dir_entrega','u.nombre','u.telefono','u.cuidad','u.colonia','u.calle','u.referencia','u.image','p.repartidor_id','p.created_at as fecha')
             ->where('p.nombre_sucursal','LIKE','%'.$query.'%')
             ->Orwhere('p.created_at','LIKE','%'.$query.'%')
             ->orderBy('p.created_at','desc')
@@ -47,11 +48,12 @@ class PedidosEspController extends Controller
 
     public function show($id)
     {
-       $pedido = DB::table('pedido_especial as p')
-        ->join('users as u','p.usuario_id','=','u.id')
-        ->select('p.id','p.nombre_sucursal as sucursal','p.direccion_sucursal as dir_suc','p.productos','p.total as monto','p.estatus','p.dir_entrega as direccion','p.dir_alterna','u.nombre','p.repartidor_id')
-        ->where('p.id','=',$id)
-        ->first();
+
+        $pedido = DB::table('pedido_especial as p')
+            ->join('datos_cliente as u','p.usuario_id','=','u.cliente_id')
+            ->select('p.id','p.nombre_sucursal as sucursal','p.direccion_sucursal as direccion','p.productos','p.total as monto','p.estatus','p.dir_entrega','u.nombre','u.telefono','u.cuidad','u.colonia','u.calle','u.referencia','u.image','p.repartidor_id','p.created_at as fecha')
+            ->where('p.id',$id)
+            ->first();
 
         return view('pedidos.show',['pedido'=>$pedido]);
     }

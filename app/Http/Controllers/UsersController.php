@@ -22,8 +22,7 @@ class UsersController extends Controller
             $usuarios = DB::table('users')
             ->where('email','LIKE','%'.$query.'%')
             ->Orwhere('tipo_usuario','LIKE','%'.$query.'%')
-            ->Orwhere('nombre','LIKE','%'.$query.'%')
-            ->Orwhere('cuidad','LIKE','%'.$query.'%')
+            ->Orwhere('name','LIKE','%'.$query.'%')
             ->Orwhere('estatus','LIKE','%'.$query.'%')
             ->orderBy('id','desc')
             ->paginate(8);

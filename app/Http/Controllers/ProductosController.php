@@ -23,9 +23,9 @@ class ProductosController extends Controller
             
             $productos = DB::table('productos as p')
             ->join('users as u','p.usuario_id','=','u.id')
-            ->select('p.id','p.nombre as producto','p.descripcion','p.categoria','p.precio','p.stock','u.nombre as asociado','p.descuento','p.puntos','p.status','p.foto','p.promocion','p.created_at')
+            ->select('p.id','p.nombre as producto','p.descripcion','p.categoria','p.precio','p.stock','u.name as asociado','p.descuento','p.puntos','p.status','p.foto','p.promocion','p.created_at')
             ->where('p.nombre','LIKE','%'.$query.'%')
-            ->Orwhere('u.nombre','LIKE','%'.$query.'%')
+            ->Orwhere('u.name','LIKE','%'.$query.'%')
             ->Orwhere('p.categoria','LIKE','%'.$query.'%')
             ->orderBy('p.id','desc')
             ->paginate(20);
