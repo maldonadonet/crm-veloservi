@@ -32,10 +32,10 @@
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
-                            <th>Tipo</th>
+                            <th>Tipo Usuario</th>
                             <th>Nombre</th>
                             <th>Estatus</th>
-                            <!-- <th class="col-md-1">Imagen</th> -->
+                            <th>Fecha de alta</th>
                             <th>Operaciones</th>
                         </tr>
                         </thead>
@@ -47,9 +47,7 @@
                                 <td>{{ $item->tipo_usuario }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->estatus }}</td>
-                                <td>
-                                    
-                                </td>
+                                <td>{{ $item->created_at }}</td>
                                 <td>
                                     <a href="{{URL::action('UsersController@show',$item->id)}}">
                                         <button class="btn btn-primary">
@@ -61,11 +59,12 @@
                                             <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <a href="{{URL::action('UsersController@show',$item->id)}}">
-                                        <button class="btn btn-info btn-danger">
+                                     <a href="#" data-target="#modal-delete-{{$item->id}}" data-toggle="modal">
+                                         <button class="btn btn-info btn-danger">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
-                                    </a>
+                                     </a>
+                                     @include('usuarios.modal')
                                 </td>
                             </tr>
                             @endforeach
